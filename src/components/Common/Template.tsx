@@ -51,6 +51,10 @@ const Template: FC<TemplateProps> = ({
           name="google-site-verification"
           content="ppDb_ilpiy3zt8GSRPyMIYBcQzYLjTfeCJdZAE3UWxE"
         />
+        <meta
+          name="naver-site-verification"
+          content="f9b45d4177ef854d0bdc860e4f26020975bd20b3"
+        />
 
         <html lang="ko" />
       </Helmet>

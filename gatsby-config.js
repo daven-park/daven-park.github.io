@@ -28,7 +28,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: '<https://my-website.com/>',
+        siteUrl: 'https://daven-park.github.io/',
         stripQueryString: true,
       },
     },

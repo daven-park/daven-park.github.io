@@ -47,6 +47,10 @@ const Template: FC<TemplateProps> = ({
         <meta name="twitter:image" content={image} />
         <meta name="twitter:site" content="@사용자이름" />
         <meta name="twitter:creator" content="@사용자이름" />
+        <meta
+          name="google-site-verification"
+          content="ppDb_ilpiy3zt8GSRPyMIYBcQzYLjTfeCJdZAE3UWxE"
+        />
 
         <html lang="ko" />
       </Helmet>

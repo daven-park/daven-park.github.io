@@ -3,7 +3,7 @@ date: '2025-03-14'
 title: '크래프톤 정글 0주차 에세이'
 categories: ['Essay', 'Life']
 summary: '크래프톤 정글에 들어오기 전의 나와 들어온지 4일이 지난 지금의 나에게'
-thumbnail: './kraftonJgLogo.jpg'
+thumbnail: './kraftonJgLogo.png'
 ---
 
 ### 모르는걸 아는게 배움이다

@@ -1,7 +1,7 @@
 ---
 date: '2025-03-23'
 title: '주저리주저리'
-categories: ['Life', 'Essay']
+categories: ['Essay', 'Life']
 summary: '주저리 주저리 생각정리'
 thumbnail: './kraftonJgLogo.png'
 ---

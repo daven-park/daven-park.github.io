@@ -3,7 +3,7 @@ date: '2025-03-29'
 title: '눈이 오잖아'
 categories: ['Essay', 'Life']
 summary: '3월말의 눈, 하얗게 쌓인 산, 비어있는 내 머리'
-thumbnail: './week03image.png'
+thumbnail: './kraftonJgLogo3.png'
 ---
 
 ### 눈 내리던 어느날

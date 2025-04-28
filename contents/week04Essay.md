@@ -3,7 +3,7 @@ date: '2025-04-19'
 title: '돛'
 categories: ['Essay', 'Life']
 summary: '방향을 잡지 않으면 그저 흘러갈 뿐인'
-thumbnail: '/week04image.png'
+thumbnail: './week04image.webp'
 ---
 
 ## **새벽산책**

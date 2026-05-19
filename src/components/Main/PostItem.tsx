@@ -2,82 +2,80 @@ import { FC } from 'react'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 import { PostFrontmatterType } from 'types/PostItem.types'
-import { GatsbyImage } from 'gatsby-plugin-image'
 
 type PostItemProps = PostFrontmatterType & { link: string }
 
 const PostItemWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-  transition: 0.3s box-shadow;
-  cursor: pointer;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--color-border-light);
+  text-decoration: none;
 
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  &:last-child {
+    border-bottom: none;
   }
-`
-const PostItemContent = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-`
 
-const ThumbnailImage = styled(GatsbyImage)`
-  width: 100%;
-  height: 200px;
-  border-radius: 10px 10px 0 0;
+  &:hover .post-title {
+    text-decoration: underline;
+    text-decoration-color: var(--color-text-primary);
+    text-underline-offset: 3px;
+  }
 `
 
 const Title = styled.div`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.45;
+  margin-bottom: 10px;
+  word-break: keep-all;
   display: -webkit-box;
-  overflow: hidden;
-  margin-bottom: 3px;
-  text-overflow: ellipsis;
-  white-space: normal;
-  overflow-wrap: break-word;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 20px;
-  font-weight: 700;
-`
-
-const Date = styled.div`
-  font-size: 14px;
-  font-weight: 400;
-  opacity: 0.7;
-`
-
-const Category = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 10px;
-  margin: 10px -5px;
-`
-
-const CategoryItem = styled.div`
-  margin: 2.5px 5px;
-  padding: 3px 5px;
-  border-radius: 3px;
-  background: black;
-  font-size: 14px;
-  font-weight: 700;
-  color: white;
+  overflow: hidden;
 `
 
 const Summary = styled.div`
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
   display: -webkit-box;
-  overflow: hidden;
-  margin-top: auto;
-  text-overflow: ellipsis;
-  white-space: normal;
-  overflow-wrap: break-word;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 16px;
-  opacity: 0.8;
+  overflow: hidden;
+  flex: 1;
+  margin-bottom: 20px;
+`
+
+const BottomRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+`
+
+const DateText = styled.div`
+  font-size: 14px;
+  color: var(--color-text-subtle);
+  white-space: nowrap;
+  flex-shrink: 0;
+`
+
+const TagRow = styled.div`
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+`
+
+const Tag = styled.span`
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-accent-text);
+  background: var(--color-accent-bg);
+  padding: 2px 9px;
+  border-radius: 9999px;
 `
 
 const PostItem: FC<PostItemProps> = function ({
@@ -85,25 +83,20 @@ const PostItem: FC<PostItemProps> = function ({
   date,
   categories,
   summary,
-  thumbnail: {
-    childImageSharp: { gatsbyImageData },
-  },
   link,
 }) {
   return (
     <PostItemWrapper to={link}>
-      <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
-
-      <PostItemContent>
-        <Title>{title}</Title>
-        <Date>{date}</Date>
-        <Category>
-          {categories.map(item => (
-            <CategoryItem key={item}>{item}</CategoryItem>
+      <Title className="post-title">{title}</Title>
+      <Summary>{summary}</Summary>
+      <BottomRow>
+        <DateText>{date}</DateText>
+        <TagRow>
+          {categories.map(cat => (
+            <Tag key={cat}>{cat}</Tag>
           ))}
-        </Category>
-        <Summary>{summary}</Summary>
-      </PostItemContent>
+        </TagRow>
+      </BottomRow>
     </PostItemWrapper>
   )
 }

@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { FC, ReactNode } from 'react'
 import GlobalStyle from './GlobalStyle'
 import Footer from './Footer'
+import Header from './Header'
 import { Helmet } from 'react-helmet'
 
 type TemplateProps = {
@@ -15,7 +16,8 @@ type TemplateProps = {
 const Container = styled.main`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  padding-top: 64px;
 `
 
 const Template: FC<TemplateProps> = ({
@@ -59,6 +61,7 @@ const Template: FC<TemplateProps> = ({
         <html lang="ko" />
       </Helmet>
       <GlobalStyle />
+      <Header />
       {children}
       <Footer />
     </Container>

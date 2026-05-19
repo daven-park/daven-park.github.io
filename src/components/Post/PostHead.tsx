@@ -1,51 +1,73 @@
-import React, { FunctionComponent } from 'react'
+import { FC } from 'react'
 import styled from '@emotion/styled'
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import PostHeadInfo, { PostHeadInfoProps } from './PostHeadInfo'
 
-type PostHeadProps = PostHeadInfoProps & { thumbnail: IGatsbyImageData }
-
-type GatsbyImgProps = {
-  image: IGatsbyImageData
-  alt: string
-  className?: string
+export type PostHeadProps = {
+  title: string
+  date: string
+  categories: string[]
 }
 
-const PostHeadWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 400px;
+const Wrapper = styled.div`
+  padding: 16px 0 20px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 24px;
 
   @media (max-width: 768px) {
-    height: 300px;
+    padding: 20px 0 16px;
   }
 `
 
-const BackgroundImage = styled((props: GatsbyImgProps) => (
-  <GatsbyImage {...props} style={{ position: 'absolute' }} />
-))`
-  z-index: -1;
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  filter: brightness(0.25);
+const Title = styled.h1`
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--color-text-primary);
+  letter-spacing: -0.5px;
+  margin-bottom: 18px;
+  word-break: keep-all;
 
   @media (max-width: 768px) {
-    height: 300px;
+    font-size: 24px;
   }
 `
 
-const PostHead: FunctionComponent<PostHeadProps> = ({
-  title,
-  date,
-  categories,
-  thumbnail,
-}) => {
+const Meta = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+`
+
+const CategoryTag = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent-text);
+  background: var(--color-accent-bg);
+  padding: 3px 10px;
+  border-radius: 9999px;
+`
+
+const Dot = styled.span`
+  color: var(--color-border);
+`
+
+const DateText = styled.span`
+  font-size: 14px;
+  color: var(--color-text-subtle);
+`
+
+const PostHead: FC<PostHeadProps> = ({ title, date, categories }) => {
   return (
-    <PostHeadWrapper>
-      <BackgroundImage image={thumbnail} alt="thumbnail" />
-      <PostHeadInfo title={title} date={date} categories={categories} />
-    </PostHeadWrapper>
+    <Wrapper>
+      <Title>{title}</Title>
+      <Meta>
+        {categories.map(cat => (
+          <CategoryTag key={cat}>{cat}</CategoryTag>
+        ))}
+        <Dot>·</Dot>
+        <DateText>{date}</DateText>
+      </Meta>
+    </Wrapper>
   )
 }
 

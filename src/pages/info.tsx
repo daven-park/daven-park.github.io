@@ -135,16 +135,24 @@ const InfoPage: FunctionComponent<InfoPageProps> = function ({
             <Value>{author}</Value>
           </InfoItem>
           <InfoItem>
-            <Label>블로그</Label>
+            <Label>깃허브</Label>
             <Value>{siteUrl}</Value>
           </InfoItem>
           <InfoItem>
             <Label>관심 분야</Label>
             <TagRow>
-              <Tag>Frontend</Tag>
-              <Tag>React</Tag>
-              <Tag>TypeScript</Tag>
-              <Tag>Gatsby</Tag>
+              <Tag>DevOps</Tag>
+              <Tag>AWS</Tag>
+              <Tag>Docker</Tag>
+              <Tag>Java</Tag>
+              <Tag>Spring</Tag>
+              <Tag>Kubernetes</Tag>
+              <Tag>Terraform</Tag>
+              <Tag>CI/CD</Tag>
+              <Tag>Git</Tag>
+              <Tag>GitHub</Tag>
+              <Tag>GitLab</Tag>
+              <Tag>GitLab</Tag>
             </TagRow>
           </InfoItem>
         </InfoRow>

@@ -111,9 +111,6 @@ export const queryMarkdownDataBySlug = graphql`
             summary
             date(formatString: "YYYY.MM.DD.")
             categories
-            thumbnail {
-              publicURL
-            }
           }
         }
       }

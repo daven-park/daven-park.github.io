@@ -27,22 +27,22 @@ const defaultStyle = css`
 
   /* Dark mode */
   [data-theme='dark'] {
-    --color-bg: #0f172a;
-    --color-bg-nav: #1e293b;
-    --color-bg-secondary: #1e293b;
-    --color-bg-code-inline: #1e293b;
-    --color-inline-code-text: #818cf8;
-    --color-bg-blockquote: #1e293b;
-    --color-text-primary: #f1f5f9;
-    --color-text-secondary: #cbd5e1;
-    --color-text-body: #e2e8f0;
-    --color-text-muted: #94a3b8;
-    --color-text-subtle: #64748b;
-    --color-border: #334155;
-    --color-border-light: #1e293b;
-    --color-accent: #818cf8;
-    --color-accent-bg: #1e1b4b;
-    --color-accent-text: #818cf8;
+    --color-bg: #191919;
+    --color-bg-nav: #191919;
+    --color-bg-secondary: #2d2d2d;
+    --color-bg-code-inline: #2d2d2d;
+    --color-inline-code-text: #f8f9fa;
+    --color-bg-blockquote: #2d2d2d;
+    --color-text-primary: #f8f9fa;
+    --color-text-secondary: #ced4da;
+    --color-text-body: #ced4da;
+    --color-text-muted: #adb5bd;
+    --color-text-subtle: #adb5bd;
+    --color-border: #2d2d2d;
+    --color-border-light: #2d2d2d;
+    --color-accent: #f8f9fa;
+    --color-accent-bg: #2d2d2d;
+    --color-accent-text: #f8f9fa;
   }
 
   * {

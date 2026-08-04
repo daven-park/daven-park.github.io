@@ -29,14 +29,14 @@ const Wrapper = styled.div`
 const PageTitle = styled.h1`
   font-size: 32px;
   font-weight: 800;
-  color: #111827;
+  color: var(--color-text-primary);
   margin-bottom: 8px;
   letter-spacing: -0.5px;
 `
 
 const PageSubtitle = styled.p`
   font-size: 16px;
-  color: #6b7280;
+  color: var(--color-text-muted);
   margin-bottom: 48px;
   line-height: 1.6;
 `
@@ -48,9 +48,9 @@ const EmptyBox = styled.div`
   justify-content: center;
   gap: 12px;
   padding: 80px 40px;
-  border: 2px dashed #e5e7eb;
+  border: 2px dashed var(--color-border);
   border-radius: 16px;
-  color: #9ca3af;
+  color: var(--color-text-subtle);
   text-align: center;
 `
 

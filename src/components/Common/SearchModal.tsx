@@ -18,7 +18,7 @@ const Overlay = styled.div`
 `
 
 const ModalBox = styled.div`
-  background: #fff;
+  background: var(--color-bg-nav);
   border-radius: 12px;
   width: 100%;
   max-width: 600px;
@@ -31,13 +31,13 @@ const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 0 16px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-border);
   gap: 12px;
 
   svg {
     width: 20px;
     height: 20px;
-    color: #9ca3af;
+    color: var(--color-text-subtle);
     flex-shrink: 0;
   }
 `
@@ -48,29 +48,29 @@ const SearchInput = styled.input`
   border: none;
   outline: none;
   font-size: 16px;
-  color: #111827;
+  color: var(--color-text-primary);
   background: transparent;
   font-family: inherit;
 
   &::placeholder {
-    color: #9ca3af;
+    color: var(--color-text-subtle);
   }
 `
 
 const CloseButton = styled.button`
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   background: none;
   cursor: pointer;
   font-size: 12px;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--color-text-muted);
   padding: 4px 8px;
   border-radius: 6px;
   font-family: inherit;
   white-space: nowrap;
 
   &:hover {
-    background: #f3f4f6;
+    background: var(--color-border-light);
   }
 `
 
@@ -82,7 +82,7 @@ const ResultList = styled.div`
 const ResultItem = styled(Link)`
   display: block;
   padding: 14px 20px;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--color-border-light);
   transition: background 0.15s;
 
   &:last-child {
@@ -90,20 +90,20 @@ const ResultItem = styled(Link)`
   }
 
   &:hover {
-    background: #f9fafb;
+    background: var(--color-bg-secondary);
   }
 `
 
 const ResultTitle = styled.div`
   font-size: 15px;
   font-weight: 600;
-  color: #111827;
+  color: var(--color-text-primary);
   margin-bottom: 4px;
 `
 
 const ResultMeta = styled.div`
   font-size: 13px;
-  color: #6b7280;
+  color: var(--color-text-muted);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -112,7 +112,7 @@ const ResultMeta = styled.div`
 const EmptyState = styled.div`
   padding: 48px 20px;
   text-align: center;
-  color: #9ca3af;
+  color: var(--color-text-subtle);
   font-size: 15px;
 `
 

@@ -97,8 +97,8 @@ const TagRow = styled.div`
 const Tag = styled.span`
   font-size: 13px;
   font-weight: 500;
-  color: #4f46e5;
-  background: #ede9fe;
+  color: var(--color-accent-text);
+  background: var(--color-accent-bg);
   padding: 4px 12px;
   border-radius: 9999px;
 `

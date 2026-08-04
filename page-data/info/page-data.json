@@ -1,1 +1,1 @@
-{"componentChunkName":"component---src-pages-info-tsx","path":"/info/","result":{"data":{"site":{"siteMetadata":{"title":"Daven's Blog","description":"기억보단 기록을","author":"daven-park"}}},"pageContext":{}},"staticQueryHashes":[],"slicesMap":{}}
+{"componentChunkName":"component---src-pages-info-tsx","path":"/info/","result":{"data":{"site":{"siteMetadata":{"title":"DavLog","description":"기억보단 기록을","author":"daven-park","siteUrl":"https://daven-park.github.io"}}},"pageContext":{}},"staticQueryHashes":["1277325648"],"slicesMap":{}}

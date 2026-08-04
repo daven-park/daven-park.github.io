@@ -72,3 +72,6 @@ yarn-error.log
 # claude
 .claude/
 .omc/
+
+# Local draft posts (copy finalized files into contents/ to publish)
+drafts/

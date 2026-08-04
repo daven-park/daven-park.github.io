@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.13.7"/><meta data-react-helmet="true" name="description" content="Java Set 구현체 살펴보기, Redis ZSET으로 보는 순서 보장"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="Set은 어떻게 작동하는가? 순서를 보장할 수 있는가? with Redis"/><meta data-react-helmet="true" property="og:description" content="Java Set 구현체 살펴보기, Redis ZSET으로 보는 순서 보장"/><meta data-react-helmet="true" property="og:image" content=""/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="Set은 어떻게 작동하는가? 순서를 보장할 수 있는가? with Redis"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Set은 어떻게 작동하는가? 순서를 보장할 수 있는가? with Redis"/><meta data-react-helmet="true" name="twitter:description" content="Java Set 구현체 살펴보기, Redis ZSET으로 보는 순서 보장"/><meta data-react-helmet="true" name="twitter:image" content=""/><meta data-react-helmet="true" name="twitter:site" content="@사용자이름"/><meta data-react-helmet="true" name="twitter:creator" content="@사용자이름"/><meta data-react-helmet="true" name="google-site-verification" content="ppDb_ilpiy3zt8GSRPyMIYBcQzYLjTfeCJdZAE3UWxE"/><meta data-react-helmet="true" name="naver-site-verification" content="f9b45d4177ef854d0bdc860e4f26020975bd20b3"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><link rel="canonical" href="https://daven-park.github.io/java_set/" data-baseprotocol="https:" data-basehost="daven-park.github.io"/><title data-react-helmet="true">Set은 어떻게 작동하는가? 순서를 보장할 수 있는가? with Redis</title><link rel="icon" type="image/png" href="/blog-icon.png"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css sxzcao">.css-sxzcao{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;padding-top:64px;}</style><main class="css-sxzcao e1strnqo0"><style data-emotion="css-global 182eyee">@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');:root,[data-theme='light']{--color-bg:#f8f9fa;--color-bg-nav:#ffffff;--color-bg-secondary:#f9fafb;--color-bg-code-inline:#e5e7eb;--color-inline-code-text:#4f46e5;--color-bg-blockquote:#f5f3ff;--color-text-primary:#111827;--color-text-secondary:#374151;--color-text-body:#1f2937;--color-text-muted:#6b7280;--color-text-subtle:#9ca3af;--color-border:#e5e7eb;--color-border-light:#f3f4f6;--color-accent:#4f46e5;--color-accent-bg:#ede9fe;--color-accent-text:#4f46e5;}[data-theme='dark']{--color-bg:#191919;--color-bg-nav:#191919;--color-bg-secondary:#2d2d2d;--color-bg-code-inline:#2d2d2d;--color-inline-code-text:#f8f9fa;--color-bg-blockquote:#2d2d2d;--color-text-primary:#f8f9fa;--color-text-secondary:#ced4da;--color-text-body:#ced4da;--color-text-muted:#adb5bd;--color-text-subtle:#adb5bd;--color-border:#2d2d2d;--color-border-light:#2d2d2d;--color-accent:#f8f9fa;--color-accent-bg:#2d2d2d;--color-accent-text:#f8f9fa;}*{padding:0;margin:0;box-sizing:border-box;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}html,body,#___gatsby{height:100%;}body{background-color:var(--color-bg);color:var(--color-text-body);-webkit-font-smoothing:antialiased;-webkit-transition:background-color 0.2s,color 0.2s;transition:background-color 0.2s,color 0.2s;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 1rfvlca">.css-1rfvlca{position:fixed;top:0;left:0;right:0;height:64px;background:var(--color-bg-nav);border-bottom:1px solid var(--color-border);z-index:100;-webkit-transition:background 0.2s,border-color 0.2s;transition:background 0.2s,border-color 0.2s;}</style><nav class="css-1rfvlca e1ke0ojz7"><style data-emotion="css 8nb97r">.css-8nb97r{max-width:720px;width:100%;height:100%;margin:0 auto;padding:0 24px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;}@media (max-width: 768px){.css-8nb97r{padding:0 20px;}}</style><div class="css-8nb97r e1ke0ojz6"><style data-emotion="css 4ofhpg">.css-4ofhpg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-text-decoration:none;text-decoration:none;line-height:1;}</style><a class="css-4ofhpg e1ke0ojz5" href="/"><style data-emotion="css 197u3js">.css-197u3js{font-size:20px;font-weight:800;color:var(--color-text-primary);letter-spacing:-0.5px;}</style><span class="css-197u3js e1ke0ojz4">DavLog</span><style data-emotion="css 181nw5t">.css-181nw5t{font-size:10px;color:var(--color-text-subtle);font-weight:400;-webkit-align-self:flex-end;-ms-flex-item-align:flex-end;align-self:flex-end;margin-top:1px;letter-spacing:0.2px;}</style><span class="css-181nw5t e1ke0ojz3">Daven + Blog</span></a><style data-emotion="css 1j5vobt">.css-1j5vobt{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:4px;}</style><div class="css-1j5vobt e1ke0ojz2"><style data-emotion="css 1p9iscj">.css-1p9iscj{font-size:14px;font-weight:500;color:var(--color-text-secondary);padding:8px 12px;border-radius:8px;-webkit-transition:background 0.15s,color 0.15s;transition:background 0.15s,color 0.15s;}.css-1p9iscj:hover{background:var(--color-border-light);color:var(--color-text-primary);}</style><a class="css-1p9iscj e1ke0ojz1" href="/info/">About</a><a class="css-1p9iscj e1ke0ojz1" href="/portfolio/">Portfolio</a><style data-emotion="css 8epkcn">.css-8epkcn{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;width:36px;height:36px;border:none;background:none;cursor:pointer;color:var(--color-text-muted);border-radius:8px;-webkit-transition:background 0.15s,color 0.15s;transition:background 0.15s,color 0.15s;margin-left:4px;}.css-8epkcn:hover{background:var(--color-border-light);color:var(--color-text-primary);}.css-8epkcn svg{width:18px;height:18px;}</style><button aria-label="검색" class="css-8epkcn e1ke0ojz0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg></button><button aria-label="테마 전환" class="css-8epkcn e1ke0ojz0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button></div></div></nav><style data-emotion="css tor9ad">.css-tor9ad{max-width:720px;margin:0 auto;padding:0 24px 100px;}@media (max-width: 768px){.css-tor9ad{padding:0 20px 80px;}}</style><div class="css-tor9ad e6b6ljm1"><style data-emotion="css 1uy7aou">.css-1uy7aou{padding:16px 0 20px;border-bottom:1px solid var(--color-border);margin-bottom:24px;}@media (max-width: 768px){.css-1uy7aou{padding:20px 0 16px;}}</style><div class="css-1uy7aou e1opi4mu5"><style data-emotion="css 1qreonb">.css-1qreonb{font-size:34px;font-weight:800;line-height:1.35;color:var(--color-text-primary);letter-spacing:-0.5px;margin-bottom:18px;word-break:keep-all;}@media (max-width: 768px){.css-1qreonb{font-size:24px;}}</style><h1 class="css-1qreonb e1opi4mu4">Set은 어떻게 작동하는가? 순서를 보장할 수 있는가? with Redis</h1><style data-emotion="css mwxihw">.css-mwxihw{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}</style><div class="css-mwxihw e1opi4mu3"><style data-emotion="css xslyr8">.css-xslyr8{font-size:12px;font-weight:600;color:var(--color-accent-text);background:var(--color-accent-bg);padding:3px 10px;border-radius:9999px;}</style><span class="css-xslyr8 e1opi4mu2">JAVA</span><span class="css-xslyr8 e1opi4mu2">자료구조</span><style data-emotion="css rvsjzk">.css-rvsjzk{color:var(--color-border);}</style><span class="css-rvsjzk e1opi4mu1">·</span><style data-emotion="css 1obs2e4">.css-1obs2e4{font-size:14px;color:var(--color-text-subtle);}</style><span class="css-1obs2e4 e1opi4mu0">2026.08.04.</span></div></div><style data-emotion="css iucg2d">.css-iucg2d{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;padding:8px 0 60px;word-break:keep-all;overflow-wrap:break-word;line-height:1.85;font-size:16px;font-weight:400;color:var(--color-text-body);}.css-iucg2d p{margin-bottom:12px;}.css-iucg2d h1,.css-iucg2d h2,.css-iucg2d h3{font-weight:800;color:var(--color-text-primary);letter-spacing:-0.3px;scroll-margin-top:80px;}.css-iucg2d h1{font-size:28px;padding-top:36px;margin-bottom:20px;}.css-iucg2d h2{font-size:22px;padding-top:32px;margin-bottom:16px;}.css-iucg2d h3{font-size:18px;padding-top:24px;margin-bottom:12px;}.css-iucg2d blockquote{margin:24px 0;padding:14px 18px;border-left:3px solid var(--color-border);background:var(--color-bg-secondary);border-radius:0 6px 6px 0;color:var(--color-text-muted);font-size:0.93em;font-weight:400;}.css-iucg2d blockquote p{margin:0;}.css-iucg2d ol,.css-iucg2d ul{margin:16px 0 16px 20px;}.css-iucg2d ol li,.css-iucg2d ul li{margin:6px 0;line-height:1.75;}.css-iucg2d hr{border:none;border-top:1px solid var(--color-border);margin:32px 0;}.css-iucg2d a{color:var(--color-accent-text);-webkit-text-decoration:underline;text-decoration:underline;text-underline-offset:3px;}.css-iucg2d a:hover{opacity:0.8;}.css-iucg2d img{max-width:100%;border-radius:8px;margin:8px 0;}.css-iucg2d table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}.css-iucg2d table th,.css-iucg2d table td{border:1px solid var(--color-border);padding:10px 14px;text-align:left;}.css-iucg2d table th{background:var(--color-bg-secondary);font-weight:700;}.css-iucg2d table tr:nth-child(even) td{background:var(--color-bg-secondary);}.css-iucg2d code:not([class*='language-']),.css-iucg2d p>code[class*='language-'],.css-iucg2d li>code[class*='language-'],.css-iucg2d td>code[class*='language-']{background:var(--color-bg-code-inline)!important;color:var(--color-inline-code-text)!important;padding:2px 6px;border-radius:5px;font-size:0.875em;font-weight:700;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;}.css-iucg2d pre[class*='language-']{margin:28px 0;padding:20px;border-radius:10px;font-size:16px;font-weight:500;line-height:1.65;overflow-x:auto;background:#2d2d2d!important;}.css-iucg2d pre[class*='language-']::-webkit-scrollbar{height:6px;}.css-iucg2d pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.2);border-radius:3px;}.css-iucg2d code[class*='language-'],.css-iucg2d pre[class*='language-']{tab-size:2;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;color:#cccccc;direction:ltr;word-spacing:normal;word-break:normal;white-space:pre;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}.css-iucg2d .token.comment,.css-iucg2d .token.prolog,.css-iucg2d .token.doctype,.css-iucg2d .token.cdata{color:#999999;font-style:italic;}.css-iucg2d .token.keyword,.css-iucg2d .token.boolean{color:#cc99cd;}.css-iucg2d .token.operator{color:#66cccc;}.css-iucg2d .token.string,.css-iucg2d .token.char,.css-iucg2d .token.attr-value{color:#7ec699;}.css-iucg2d .token.number{color:#f99157;}.css-iucg2d .token.function,.css-iucg2d .token.function-name{color:#6699cc;}.css-iucg2d .token.class-name,.css-iucg2d .token.builtin{color:#ffcc66;}.css-iucg2d .token.attr-name{color:#f99157;}.css-iucg2d .token.property{color:#f99157;}.css-iucg2d .token.tag,.css-iucg2d .token.selector{color:#f2777a;}.css-iucg2d .token.punctuation{color:#cccccc;}.css-iucg2d .token.variable,.css-iucg2d .token.parameter{color:#f2777a;}.css-iucg2d .token.regex,.css-iucg2d .token.important{color:#f99157;}.css-iucg2d .token.constant{color:#f99157;}.css-iucg2d .token.inserted{color:#7ec699;}.css-iucg2d .token.deleted{color:#f2777a;}[data-theme='light'] .css-iucg2d pre[class*='language-']{background:#e9ecef!important;}[data-theme='light'] .css-iucg2d code[class*='language-'],[data-theme='light'] .css-iucg2d pre[class*='language-']{color:#24292f;}[data-theme='light'] .css-iucg2d pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(0, 0, 0, 0.2);}[data-theme='light'] .css-iucg2d .token.comment,[data-theme='light'] .css-iucg2d .token.prolog,[data-theme='light'] .css-iucg2d .token.doctype,[data-theme='light'] .css-iucg2d .token.cdata{color:#6e7781;}[data-theme='light'] .css-iucg2d .token.keyword,[data-theme='light'] .css-iucg2d .token.boolean{color:#cf222e;}[data-theme='light'] .css-iucg2d .token.operator{color:#cf222e;}[data-theme='light'] .css-iucg2d .token.string,[data-theme='light'] .css-iucg2d .token.char,[data-theme='light'] .css-iucg2d .token.attr-value{color:#0a3069;}[data-theme='light'] .css-iucg2d .token.number{color:#0550ae;}[data-theme='light'] .css-iucg2d .token.function,[data-theme='light'] .css-iucg2d .token.function-name{color:#6639ba;}[data-theme='light'] .css-iucg2d .token.class-name,[data-theme='light'] .css-iucg2d .token.builtin{color:#953800;}[data-theme='light'] .css-iucg2d .token.attr-name,[data-theme='light'] .css-iucg2d .token.property{color:#0550ae;}[data-theme='light'] .css-iucg2d .token.tag,[data-theme='light'] .css-iucg2d .token.selector{color:#116329;}[data-theme='light'] .css-iucg2d .token.punctuation,[data-theme='light'] .css-iucg2d .token.variable,[data-theme='light'] .css-iucg2d .token.parameter{color:#24292f;}[data-theme='light'] .css-iucg2d .token.regex,[data-theme='light'] .css-iucg2d .token.important{color:#953800;}[data-theme='light'] .css-iucg2d .token.constant{color:#0550ae;}[data-theme='light'] .css-iucg2d .token.inserted{color:#116329;}[data-theme='light'] .css-iucg2d .token.deleted{color:#cf222e;}@media (max-width: 768px){.css-iucg2d{padding:32px 0 60px;line-height:1.75;font-size:15px;}.css-iucg2d h1{font-size:22px;}.css-iucg2d h2{font-size:19px;}.css-iucg2d h3{font-size:16px;}.css-iucg2d img{width:100%;}.css-iucg2d pre[class*='language-']{font-size:13px;border-radius:8px;}.css-iucg2d hr{margin:36px 0;}}</style><div class="post-content css-iucg2d e1ijh0y10"><h2><code class="language-text">Set</code>이란?</h2>
+<blockquote>
+<p>중복을 허용하지 않는 자료구조. <code class="language-text">HashSet</code> 기준 탐색에 평균 O(1)의 시간복잡도를 가진다.
+구현체에 따라 순서를 보장할 수 있다.</p>
+</blockquote>
+<p>자료구조를 Java에서 배우게 되면 자연스럽게 <code class="language-text">Set</code>과 Map을 함께 배우게 되는데요. key:value 형태인 Map과 다르게 <code class="language-text">Set</code>은 보통 중복처리와 집합연산에서 사용하곤 합니다.</p>
+<p>이 글에서는 <code class="language-text">Redis ZSET</code>(Sorted Set)을 이해하기 위해 Java의 <code class="language-text">Set</code> 구현체를 살펴보고, <code class="language-text">Redis ZSET</code>이 어떻게 효율적으로 순서를 보장하는지 알아보겠습니다.</p>
+<h2>Java Set 구현체</h2>
+<p>Java에서 대표적인 <code class="language-text">Set</code> 구현체는 3가지가 있습니다.</p>
+<ul>
+<li><code class="language-text">HashSet</code></li>
+<li><code class="language-text">TreeSet</code></li>
+<li><code class="language-text">LinkedHashSet</code></li>
+</ul>
+<h3><code class="language-text">HashSet</code></h3>
+<p><code class="language-text">HashSet</code>은 내부적으로 HashMap을 사용하고 있습니다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token keyword">extends</span> <span class="token class-name">AbstractSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span><span class="token punctuation">,</span> <span class="token class-name">Cloneable</span><span class="token punctuation">,</span> <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span>Serializable</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">transient</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> map<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Object</span> <span class="token constant">PRESENT</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">HashSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><code class="language-text">HashSet</code>은 HashMap을 사용하고 있습니다. HashMap은 내부적으로 배열을 사용하고 있는데요.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token keyword">extends</span> <span class="token class-name">AbstractMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span><span class="token punctuation">,</span> <span class="token class-name">Cloneable</span><span class="token punctuation">,</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span></code></pre></div>
+<p>내부적으로 결국 Map 구조에 key에 값을 넣고 value에는 항상 PRESENT 객체를 넣어줍니다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">E</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> <span class="token constant">PRESENT</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>HashMap은 hash 함수를 사용해 해시값을 버킷 배열에 분산하고, 해시 충돌을 처리하기 위해 버킷 배열을 사용합니다. 버킷 배열은 노드 형태로 이루어져 있습니다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">element.hashCode()
+    ↓
+hash 보정
+    ↓
+버킷 인덱스 계산
+    ↓
+table[index]</code></pre></div>
+<p>해싱을 통해 key값의 해시값을 계산하고, 해시값을 버킷 배열의 인덱스로 변환합니다. 그럼에도 같은 버킷 인덱스에 배치되는 경우 충돌이 발생하는데, 이를 해결하기 위해 체이닝 기법을 사용합니다. 체이닝 기법은 같은 버킷 인덱스에 배치된 노드를 연결리스트로 연결해줍니다. Java 8부터는 충돌이 많아지면 연결리스트를 트리 구조로 바꿔 성능 저하를 줄입니다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">버킷 배열
+table
+  ↓
+[0] null
+[1] Node → Node
+[2] null
+[3] Node
+[4] TreeNode</code></pre></div>
+<p>이런식으로 버킷 배열과 인덱스를 사용해서 중복을 방지합니다. 조금 더 자세하게 중복 판단을 들여다보면
+hashCode()와 equals() 메서드를 사용해서 중복을 판단합니다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">long</span> id<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">==</span> obj<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>obj <span class="token keyword">instanceof</span> <span class="token class-name">User</span> other<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> id <span class="token operator">==</span> other<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">Long</span><span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>시간복잡도는 add, contains, remove 모두 평균 O(1)입니다.</p>
+<h3><code class="language-text">LinkedHashSet</code></h3>
+<p><code class="language-text">LinkedHashSet</code>은 해시 기반 검색에 삽입 순서를 기억하는 연결 리스트 구현체 입니다. 말 그대로 LinkedHashMap에 저장하고, 들어온 순서를 DoublyLinked List 구조로 저장해서 순서를 보장합니다. 따라서, 값 기준 정렬이 아닌, 들어온 순서를 보존해주는 구조입니다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// LinkedHashMap.java (OpenJDK)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token keyword">extends</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token keyword">extends</span> <span class="token class-name">HashMap<span class="token punctuation">.</span>Node</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+        <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> before<span class="token punctuation">,</span> after<span class="token punctuation">;</span>  <span class="token comment">// ← 순서 보장용</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">transient</span> <span class="token class-name">LinkedHashMap<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> head<span class="token punctuation">;</span>  <span class="token comment">// 리스트의 첫 노드</span>
+    <span class="token keyword">transient</span> <span class="token class-name">LinkedHashMap<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> tail<span class="token punctuation">;</span>  <span class="token comment">// 리스트의 마지막 노드</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>실제 구현체는 HashMap을 상속받아 내부적으로 head와 tail을 사용해 이중 연결 리스트 구조를 순서 보장으로 사용합니다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// HashMap.Node — HashSet이 사용</span>
+<span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> <span class="token keyword">int</span> hash<span class="token punctuation">;</span>
+    <span class="token keyword">final</span> <span class="token class-name">K</span> key<span class="token punctuation">;</span>
+    <span class="token class-name">V</span> value<span class="token punctuation">;</span>
+    <span class="token class-name">Node</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> next<span class="token punctuation">;</span>  <span class="token comment">// 같은 버킷 내 충돌 체이닝용</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// LinkedHashMap.Entry — LinkedHashSet이 사용</span>
+<span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token keyword">extends</span> <span class="token class-name">Node</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+    <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> before<span class="token punctuation">,</span> after<span class="token punctuation">;</span>  <span class="token comment">// 전체 삽입 순서용 (추가됨)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>기존에 우리가 배운 HashMap의 Node 구조는 유지하되, Entry 마다 연결 구조를 사용해서 순서를 보장하는 것이죠.</p>
+<p>시간복잡도는 add, remove, contains 모두 평균 O(1)이지만, 반복문을 사용해 순회하는 경우 O(n)입니다.</p>
+<h3><code class="language-text">TreeSet</code></h3>
+<p><code class="language-text">TreeSet</code>은 균형 이진 탐색 트리인 Red-Black Tree 구조를 사용해서 <strong>정렬된 순서</strong>를 보장합니다. Red-Black Tree는 왼쪽 자식 노드의 값은 부모 노드의 값보다 작고, 오른쪽 자식 노드의 값은 부모 노드의 값보다 큰 이진 탐색 트리에 색상 규칙을 더해 균형을 유지하는 트리 구조입니다.</p>
+<p><code class="language-text">TreeSet</code>에서 사용되는 TreeMap도 Map에 key를 저장하고 PRESENT를 값으로 사용하게 되는데요, TreeMap은 내부적으로 정렬된 트리를 사용하므로 정렬된 순서를 보장합니다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// TreeSet.java (OpenJDK)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TreeSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token keyword">extends</span> <span class="token class-name">AbstractSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">transient</span> <span class="token class-name">NavigableMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> m<span class="token punctuation">;</span>  <span class="token comment">// 실제로는 TreeMap</span>
+    <span class="token keyword">public</span> <span class="token class-name">TreeSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TreeMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>TreeMap은 Red-Black Tree 구조를 사용해서 정렬된 순서를 보장합니다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// TreeMap.java (OpenJDK) — Entry 구조 (개념)</span>
+<span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+    <span class="token class-name">K</span> key<span class="token punctuation">;</span>
+    <span class="token class-name">V</span> value<span class="token punctuation">;</span>
+    <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> left<span class="token punctuation">;</span>    <span class="token comment">// 왼쪽 자식</span>
+    <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> right<span class="token punctuation">;</span>   <span class="token comment">// 오른쪽 자식</span>
+    <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> parent<span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span> color<span class="token punctuation">;</span>      <span class="token comment">// RED or BLACK</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><code class="language-text">TreeSet</code>은 균형 트리로 인해 정렬된 key를 보장합니다. 대신 삽입 순서를 보장하지 않습니다. 이때 중복 판단은 equals()가 아닌 compareTo() 또는 Comparator의 비교 결과를 기준으로 합니다.</p>
+<p>3가지를 정리해보면 다음과 같습니다.</p>
+<table>
+<thead>
+<tr>
+<th>구현체</th>
+<th>순서 보장</th>
+<th>시간복잡도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="language-text">HashSet</code></td>
+<td>아니요</td>
+<td>평균 O(1)</td>
+</tr>
+<tr>
+<td><code class="language-text">LinkedHashSet</code></td>
+<td>예(삽입된 순서)</td>
+<td>평균 O(1)</td>
+</tr>
+<tr>
+<td><code class="language-text">TreeSet</code></td>
+<td>예(정렬된 순서)</td>
+<td>O(log n)</td>
+</tr>
+</tbody>
+</table>
+<p>문제에 따라 선택해서 사용하는 것이 더 효율적일 수 있습니다.</p>
+<h2><code class="language-text">Redis ZSET</code></h2>
+<p>그렇다면, 저희가 초반에 얘기했던 <code class="language-text">Redis ZSET</code>(Sorted Set)은 어떤 구조일까요?</p>
+<blockquote>
+<p><strong>Set</strong> : member는 중복되지 않는다.</br> <strong>Sorted</strong> : 각 member에 score를 붙이고 score 기준으로 정렬한다. score가 같으면 member를 사전순으로 정렬한다.</p>
+</blockquote>
+<p><code class="language-text">ZSET</code> 이름에서 보이듯이 <code class="language-text">TreeSet</code>과 가장 비슷하다고 생각하게 되는데요, 더 효율적인 최적화를 위해 score를 기준으로 정렬합니다. <code class="language-text">TreeSet</code>은 member를 기준으로 정렬하는 반면, score로 정렬한 유일 member 집합입니다.</p>
+<p>Red-Black Tree로 정렬했던 <code class="language-text">TreeSet</code>과 다르게 <code class="language-text">Redis ZSET</code>은 크기에 따라 두가지 인코딩을 사용합니다.</p>
+<ol>
+<li>작을 때 - listpack(구 ziplist)
+기준(<strong>zset-max-listpack-entries</strong>, <strong>zset-max-listpack-value</strong>)이하면 압축한 listpack 하나에 [member, score, member, score, …] 형태로 저장해 메모리를 절약합니다.</li>
+</ol>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">listpack (구 ziplist)
+┌─────────┬───────┬─────────┬───────┬─────────┬───────┐
+│ member  │ score │ member  │ score │ member  │ score │
+├─────────┼───────┼─────────┼───────┼─────────┼───────┤
+│ "alice" │  100  │ "carol" │  150  │ "bob"   │  200  │
+└─────────┴───────┴─────────┴───────┴─────────┴───────┘</code></pre></div>
+<ol start="2">
+<li>클 때 - dict + zskiplist</li>
+</ol>
+<p>HashTable 구조인 dict에 member를 빠르게 찾기 위한 인덱스가 저장되고, skip list를 통해 순서를 보장하며 빠르게 찾는 구조입니다.</p>
+<div class="gatsby-highlight" data-language="c"><pre class="language-c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">zset</span> <span class="token punctuation">{</span>
+    dict <span class="token operator">*</span>dict<span class="token punctuation">;</span>       <span class="token comment">// member → score  (O(1) 조회)</span>
+    zskiplist <span class="token operator">*</span>zsl<span class="token punctuation">;</span>   <span class="token comment">// score 순 정렬   (O(log N) 범위/순위)</span>
+<span class="token punctuation">}</span> zset<span class="token punctuation">;</span></code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">        ZADD "alice" 100
+             │
+   ┌─────────┴─────────┐
+   ▼                   ▼
+dict (해시)        skiplist (스킵 리스트)
+"alice" → 100      score 순 연결:
+"bob"   → 200      100:alice → 200:bob → ...</code></pre></div>
+<p>Hash Table 구조로 인해 member 기준으로 값을 빠르게 찾고,</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">score:    100      200      300      400
+          │        │        │        │
+Level 1:  HEAD ──────────────▶ [300:bob] ──────▶ NULL
+          │        │           │
+Level 0:  HEAD ▶ [100:alice] ▶ [200:carol] ▶ [300:bob] ▶ [400:dave] ▶ NULL
+               ◀──────── backward ────────▶</code></pre></div>
+<p>Level 단위 계층을 두어 높은 Level부터 찾는 값을 찾아 다음 Level로 넘어갑니다. 조금 다른 것 같으면서도 이분탐색의 구조와 비슷한 탐색 방식입니다. 따라서, skip list에서의 평균적인 탐색·삽입·삭제가 O(log N)에 가깝습니다.</p>
+<h3>Level은 어떻게 정해지는가</h3>
+<p>삽입을 확률적으로 결정합니다(<code class="language-text">Redis</code>: p ≈ 0.25).</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">새 노드 삽입 시
+  Level 0: 항상 생성 (100%)
+  Level 1: 25% 확률
+  Level 2: 6.25% 확률
+  ...
+  최대 32레벨</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">평균적으로
+Level 2:  ■ ■                    (적음 — 고속도로)
+Level 1:  ■ ■ ■ ■ ■ ■           (중간)
+Level 0:  ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■  (전부 — 일반 도로)
+</code></pre></div>
+<p>Red-Black Tree처럼 rebalance와 같은 작업이 필요 없이 랜덤한 확률로 레벨을 결정하여 탐색 속도를 빠르게 만들었습니다. 실제 정렬된 자료구조 중에서도 시간 단축을 위해 확률적으로 레벨과 포인터를 다루는 구조가 존재하죠.</p>
+<h3><code class="language-text">Redis ZSET</code> 연산작업</h3>
+<p>이를 이해하면 이제 <code class="language-text">Redis ZSET</code>의 해당 작업들을 이해해볼 수 있습니다. 아래 복잡도는 skiplist 인코딩 기준이며, ZADD와 ZREM은 member 하나를 처리할 때 기준입니다.</p>
+<table>
+<thead>
+<tr>
+<th align="center">연산</th>
+<th align="center">주로 쓰는 구조</th>
+<th align="center">기능</th>
+<th align="center">복잡도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">ZSCORE member</td>
+<td align="center">dict</td>
+<td align="center">해당 member의 score 조회</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">ZADD / ZREM</td>
+<td align="center">dict + skiplist</td>
+<td align="center">값 저장, 삭제</td>
+<td align="center">O(log N)</td>
+</tr>
+<tr>
+<td align="center">ZRANGE / ZRANGEBYSCORE</td>
+<td align="center">skiplist</td>
+<td align="center">순위 범위로 조회</td>
+<td align="center">O(log N + M)</td>
+</tr>
+<tr>
+<td align="center">ZRANK</td>
+<td align="center">skiplist</td>
+<td align="center">특정 member의 순위 조회</td>
+<td align="center">O(log N)</td>
+</tr>
+</tbody>
+</table>
+<h3><code class="language-text">Redis ZSET</code> 연산 예시</h3>
+<p>먼저 아래와 같이 member와 score를 저장해보겠습니다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZADD ranking 100 alice 200 bob 150 carol</code></pre></div>
+<h4>ZSCORE</h4>
+<p>특정 member의 score를 조회합니다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZSCORE ranking alice
+# "100"</code></pre></div>
+<h4>ZADD / ZREM</h4>
+<p>새 member를 추가하거나, 기존 member의 score를 변경할 수 있습니다. ZREM을 사용하면 member를 삭제합니다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZADD ranking 250 dave
+ZADD ranking 180 carol
+ZREM ranking dave</code></pre></div>
+<h4>ZRANGE / ZRANGEBYSCORE</h4>
+<p>ZRANGE는 순위 범위를, ZRANGEBYSCORE는 score 범위를 기준으로 조회합니다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZRANGE ranking 0 -1 WITHSCORES
+# 1) "alice"
+# 2) "100"
+# 3) "carol"
+# 4) "180"
+# 5) "bob"
+# 6) "200"
+
+ZRANGEBYSCORE ranking 100 180 WITHSCORES
+# 1) "alice"
+# 2) "100"
+# 3) "carol"
+# 4) "180"</code></pre></div>
+<h4>ZRANK</h4>
+<p>특정 member의 순위를 조회합니다. 순위는 0부터 시작합니다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZRANK ranking carol
+# (integer) 1</code></pre></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div></div><style data-emotion="css 1kiehvq">.css-1kiehvq{position:fixed;top:60px;left:calc(50% + 380px);width:220px;max-height:calc(100vh - 100px);overflow-y:auto;}.css-1kiehvq::-webkit-scrollbar{width:3px;}.css-1kiehvq::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:4px;}@media (max-width: 1199px){.css-1kiehvq{display:none;}}</style><aside class="css-1kiehvq e6b6ljm0"><style data-emotion="css 1aio9b8">.css-1aio9b8{padding:24px 0;}</style><div class="css-1aio9b8 etse75s2"><style data-emotion="css afd1zb">.css-afd1zb{font-size:11px;font-weight:700;color:var(--color-text-subtle);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding-left:12px;}</style><div class="css-afd1zb etse75s1">목차</div><style data-emotion="css 15cakdj">.css-15cakdj{display:block;padding:5px 12px 5px 12px;font-size:13px;line-height:1.5;color:var(--color-accent);font-weight:600;border-left:2px solid var(--color-accent);-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.15s;transition:all 0.15s;}.css-15cakdj:hover{color:var(--color-text-primary);background:var(--color-border-light);}</style><a href="#set이란" class="css-15cakdj etse75s0">Set이란?</a><style data-emotion="css 1kkamc5">.css-1kkamc5{display:block;padding:5px 12px 5px 12px;font-size:13px;line-height:1.5;color:var(--color-text-muted);font-weight:400;border-left:2px solid transparent;-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.15s;transition:all 0.15s;}.css-1kkamc5:hover{color:var(--color-text-primary);background:var(--color-border-light);}</style><a href="#java-set-구현체" class="css-1kkamc5 etse75s0">Java Set 구현체</a><style data-emotion="css uqp2rd">.css-uqp2rd{display:block;padding:5px 12px 5px 24px;font-size:13px;line-height:1.5;color:var(--color-text-muted);font-weight:400;border-left:2px solid transparent;-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.15s;transition:all 0.15s;}.css-uqp2rd:hover{color:var(--color-text-primary);background:var(--color-border-light);}</style><a href="#hashset" class="css-uqp2rd etse75s0">HashSet</a><a href="#linkedhashset" class="css-uqp2rd etse75s0">LinkedHashSet</a><a href="#treeset" class="css-uqp2rd etse75s0">TreeSet</a><a href="#redis-zset" class="css-1kkamc5 etse75s0">Redis ZSET</a><a href="#level은-어떻게-정해지는가" class="css-uqp2rd etse75s0">Level은 어떻게 정해지는가</a><a href="#redis-zset-연산작업" class="css-uqp2rd etse75s0">Redis ZSET 연산작업</a><a href="#redis-zset-연산-예시" class="css-uqp2rd etse75s0">Redis ZSET 연산 예시</a></div></aside><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visition My Blog, Have a Good Day 😊<br/>© 2024 Developer Daven, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/java_set/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-6ebb8315b59a2423a646.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-419cc1dccdb06c012fd7.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-5a94c45cad32ce1616ca.js\"],\"component---src-pages-info-tsx\":[\"/component---src-pages-info-tsx-f1d014052408b8a96b24.js\"],\"component---src-pages-portfolio-tsx\":[\"/component---src-pages-portfolio-tsx-da0c59e7b89b230971ea.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-408f5768becac2d0b666.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="fdd3f3cdff28308dc44c";</script><script src="/webpack-runtime-cbd10c6b9fe45232f531.js" async></script><script src="/framework-6a525285796fb83f2864.js" async></script><script src="/app-6ebb8315b59a2423a646.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>

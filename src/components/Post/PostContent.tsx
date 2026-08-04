@@ -119,18 +119,21 @@ const MarkdownRenderer = styled.div`
     }
   }
 
-  /* 인라인 코드 */
-  code:not([class*='language-']) {
-    background: var(--color-bg-code-inline);
-    color: var(--color-inline-code-text);
+  /* 인라인 코드 (클래스 없음 + prism이 language-* 붙인 경우 모두 커버) */
+  code:not([class*='language-']),
+  p > code[class*='language-'],
+  li > code[class*='language-'],
+  td > code[class*='language-'] {
+    background: var(--color-bg-code-inline) !important;
+    color: var(--color-inline-code-text) !important;
     padding: 2px 6px;
     border-radius: 5px;
     font-size: 0.875em;
     font-weight: 700;
-    font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
 
-  /* 코드 블록 — GitHub Dark */
+  /* 코드 블록 — Tomorrow Night Eighties */
   pre[class*='language-'] {
     margin: 28px 0;
     padding: 20px;
@@ -139,7 +142,7 @@ const MarkdownRenderer = styled.div`
     font-weight: 500;
     line-height: 1.65;
     overflow-x: auto;
-    background: #0d1117 !important;
+    background: #2d2d2d !important;
 
     &::-webkit-scrollbar {
       height: 6px;
@@ -153,85 +156,90 @@ const MarkdownRenderer = styled.div`
   code[class*='language-'],
   pre[class*='language-'] {
     tab-size: 2;
-    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-    color: #c9d1d9;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    color: #cccccc;
+    direction: ltr;
+    word-spacing: normal;
+    word-break: normal;
+    white-space: pre;
+    hyphens: none;
   }
 
-  /* GitHub Dark 토큰 색상 */
+  /* Tomorrow Night Eighties 토큰 색상 */
   .token.comment,
   .token.prolog,
   .token.doctype,
   .token.cdata {
-    color: #8b949e;
+    color: #999999;
     font-style: italic;
   }
 
   .token.keyword,
   .token.boolean {
-    color: #ff7b72;
+    color: #cc99cd;
   }
 
   .token.operator {
-    color: #ff7b72;
+    color: #66cccc;
   }
 
   .token.string,
   .token.char,
   .token.attr-value {
-    color: #a5d6ff;
+    color: #7ec699;
   }
 
   .token.number {
-    color: #79c0ff;
+    color: #f99157;
   }
 
   .token.function,
   .token.function-name {
-    color: #d2a8ff;
+    color: #6699cc;
   }
 
   .token.class-name,
   .token.builtin {
-    color: #ffa657;
+    color: #ffcc66;
   }
 
   .token.attr-name {
-    color: #79c0ff;
+    color: #f99157;
   }
 
   .token.property {
-    color: #79c0ff;
+    color: #f99157;
   }
 
   .token.tag,
   .token.selector {
-    color: #7ee787;
+    color: #f2777a;
   }
 
   .token.punctuation {
-    color: #c9d1d9;
+    color: #cccccc;
   }
 
   .token.variable,
   .token.parameter {
-    color: #c9d1d9;
+    color: #f2777a;
   }
 
   .token.regex,
   .token.important {
-    color: #ffa657;
+    color: #f99157;
   }
 
   .token.constant {
-    color: #79c0ff;
+    color: #f99157;
   }
 
   .token.inserted {
-    color: #7ee787;
+    color: #7ec699;
   }
 
   .token.deleted {
-    color: #ff7b72;
+    color: #f2777a;
   }
 
   /* GitHub Light 테마 (라이트 모드) */

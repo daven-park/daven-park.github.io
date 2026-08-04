@@ -122,7 +122,7 @@ const Header: FC = () => {
     <Nav>
       <NavInner>
         <LogoLink to="/">
-          <LogoMain>Davlog</LogoMain>
+          <LogoMain>DavLog</LogoMain>
           <LogoSub>Daven + Blog</LogoSub>
         </LogoLink>
         <NavMenu>

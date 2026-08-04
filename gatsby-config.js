@@ -9,7 +9,7 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Daven's Blog`,
+    title: `DavLog`,
     description: `기억보단 기록을`,
     author: `daven-park`,
     siteUrl: `https://daven-park.github.io/`,

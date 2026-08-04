@@ -10,8 +10,8 @@ const defaultStyle = css`
     --color-bg: #f8f9fa;
     --color-bg-nav: #ffffff;
     --color-bg-secondary: #f9fafb;
-    --color-bg-code-inline: #f6f8fa;
-    --color-inline-code-text: #cf222e;
+    --color-bg-code-inline: #e5e7eb;
+    --color-inline-code-text: #4f46e5;
     --color-bg-blockquote: #f5f3ff;
     --color-text-primary: #111827;
     --color-text-secondary: #374151;

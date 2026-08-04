@@ -43,6 +43,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "gh-pages": "^6.1.1",
+    "patch-package": "^8.0.1",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4"
   },
@@ -50,6 +51,9 @@
     "gatsby"
   ],
   "license": "0BSD",
+  "engines": {
+    "node": ">=18 <21"
+  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",

@@ -244,7 +244,7 @@ const MarkdownRenderer = styled.div`
 
   /* GitHub Light 테마 (라이트 모드) */
   [data-theme='light'] & pre[class*='language-'] {
-    background: #f6f8fa !important;
+    background: #e9ecef !important;
   }
 
   [data-theme='light'] & code[class*='language-'],

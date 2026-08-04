@@ -37,6 +37,28 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
+// Keep post queries valid when no published Markdown files exist yet.
+exports.createSchemaCustomization = ({ actions }) => {
+  actions.createTypes(`
+    type MarkdownRemark implements Node {
+      html: String
+      frontmatter: MarkdownRemarkFrontmatter
+      fields: MarkdownRemarkFields
+    }
+
+    type MarkdownRemarkFrontmatter {
+      title: String
+      summary: String
+      date: Date @dateformat
+      categories: [String]
+    }
+
+    type MarkdownRemarkFields {
+      slug: String
+    }
+  `)
+}
+
 // Generate Post Page Through Markdown Data
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions

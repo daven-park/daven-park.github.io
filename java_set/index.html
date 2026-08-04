@@ -231,38 +231,284 @@ Level 0:  ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■  (전부 — 일반 �
 </table>
 <h3><code class="language-text">Redis ZSET</code> 연산 예시</h3>
 <p>먼저 아래와 같이 member와 score를 저장해보겠습니다.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZADD ranking 100 alice 200 bob 150 carol</code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5ad258e7af3f6b3dba70b14ea32ea227/b034b/zadd.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 8.854166666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAXElEQVR42nWLOQoAIRAE/Yh4REYi44WM6P9f1csMGG5QFPRhxhgQaq0454CI0HvHvRc5Z83eZq2F1poiG2ZWSzfn1K+Rw94bpRSklGCthfdecc4hxogQgiLZ8x8f8h49EnOSfKYAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/5ad258e7af3f6b3dba70b14ea32ea227/a59e9/zadd.webp 192w,
+/static/5ad258e7af3f6b3dba70b14ea32ea227/0ca9f/zadd.webp 384w,
+/static/5ad258e7af3f6b3dba70b14ea32ea227/dc9b9/zadd.webp 768w,
+/static/5ad258e7af3f6b3dba70b14ea32ea227/4b958/zadd.webp 1072w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/5ad258e7af3f6b3dba70b14ea32ea227/3b721/zadd.png 192w,
+/static/5ad258e7af3f6b3dba70b14ea32ea227/66595/zadd.png 384w,
+/static/5ad258e7af3f6b3dba70b14ea32ea227/fe486/zadd.png 768w,
+/static/5ad258e7af3f6b3dba70b14ea32ea227/b034b/zadd.png 1072w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/5ad258e7af3f6b3dba70b14ea32ea227/fe486/zadd.png"
+            alt="zadd"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<br/>
 <h4>ZSCORE</h4>
 <p>특정 member의 score를 조회합니다.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZSCORE ranking alice
-# "100"</code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 694px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6eba6ca84ba6a0f8335bef96eca9e5a2/91652/zscore.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 11.458333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAbElEQVR42k2MSQoFIRBD+xzisG5w54ygOIL3P1CaEj78xaMSUsmz90bOGSmli/ceIQS01lBKgdYac06stXDOwfu+1/feUWuFc+72xhgwxuCJMYJGrbXgnEMpBSklhBBgjF1NUEb8MoL0/z/dD30OPdJ4hEhVAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/6eba6ca84ba6a0f8335bef96eca9e5a2/a59e9/zscore.webp 192w,
+/static/6eba6ca84ba6a0f8335bef96eca9e5a2/0ca9f/zscore.webp 384w,
+/static/6eba6ca84ba6a0f8335bef96eca9e5a2/a23a1/zscore.webp 694w"
+              sizes="(max-width: 694px) 100vw, 694px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/6eba6ca84ba6a0f8335bef96eca9e5a2/3b721/zscore.png 192w,
+/static/6eba6ca84ba6a0f8335bef96eca9e5a2/66595/zscore.png 384w,
+/static/6eba6ca84ba6a0f8335bef96eca9e5a2/91652/zscore.png 694w"
+            sizes="(max-width: 694px) 100vw, 694px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/6eba6ca84ba6a0f8335bef96eca9e5a2/91652/zscore.png"
+            alt="zscore"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<br/>
 <h4>ZADD / ZREM</h4>
 <p>새 member를 추가하거나, 기존 member의 score를 변경할 수 있습니다. ZREM을 사용하면 member를 삭제합니다.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZADD ranking 250 dave
-ZADD ranking 180 carol
-ZREM ranking dave</code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 670px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/114f727988f746b6046889632cac74cc/6bbca/zrem.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 25.520833333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA20lEQVR42k2QWaqFQBBD3YXihIIKDuCsOCKO6ALc/07ySD2E+xFil8XppJVt29C2LbquQ9M0KMsSwzDgPE9c14U8z7EsC973RVVVGMcR933jOA7M84y+70EGd+I4hkIYIeu6yrAoCqRpCt/3oes6HMeBbdsiy7Lk7LquOHfo35xSSOdN+76LCPxNHASBzKZpQpIkkoKpsyxDFEUIw1CS0wlWuMifX9IPyNp0QuisTxgvYRNWp7jPUHVd/wOZhOK7PM8jUFb2PA+qqsI0Tan++61pmrhhGCKe6XyWP23pnGGqMUCtAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/114f727988f746b6046889632cac74cc/a59e9/zrem.webp 192w,
+/static/114f727988f746b6046889632cac74cc/0ca9f/zrem.webp 384w,
+/static/114f727988f746b6046889632cac74cc/32193/zrem.webp 670w"
+              sizes="(max-width: 670px) 100vw, 670px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/114f727988f746b6046889632cac74cc/3b721/zrem.png 192w,
+/static/114f727988f746b6046889632cac74cc/66595/zrem.png 384w,
+/static/114f727988f746b6046889632cac74cc/6bbca/zrem.png 670w"
+            sizes="(max-width: 670px) 100vw, 670px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/114f727988f746b6046889632cac74cc/6bbca/zrem.png"
+            alt="zrem"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<br/>
 <h4>ZRANGE / ZRANGEBYSCORE</h4>
 <p>ZRANGE는 순위 범위를, ZRANGEBYSCORE는 score 범위를 기준으로 조회합니다.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZRANGE ranking 0 -1 WITHSCORES
-# 1) "alice"
-# 2) "100"
-# 3) "carol"
-# 4) "180"
-# 5) "bob"
-# 6) "200"
-
-ZRANGEBYSCORE ranking 100 180 WITHSCORES
-# 1) "alice"
-# 2) "100"
-# 3) "carol"
-# 4) "180"</code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/cb03251832d6dc17410fcb3c60de0220/566b8/zrange.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 42.708333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAvklEQVR42q2SyQqFMAxF+yG2Ci6UigN141TECVTE//+bKwkoD+HhQheXtElzuGkriqJAXdcwxqAsS0zThDzPObdtG4ZhQJIkHK21aJoGWZYhiiLe932PruswzzP3ijRNOeH7PpRSkFKyaO26LkeS53mXzhzVz7OnRBzHDKTiL+Cf7oC7BFmncdq2RRAEjw1PYuC6rqDR34AuoNYa4ziiqiqEYfjeIQHpheguHcd575BGXZaFv8EnQALt+/6ZwwO47wB1FxQeEgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/cb03251832d6dc17410fcb3c60de0220/a59e9/zrange.webp 192w,
+/static/cb03251832d6dc17410fcb3c60de0220/0ca9f/zrange.webp 384w,
+/static/cb03251832d6dc17410fcb3c60de0220/dc9b9/zrange.webp 768w,
+/static/cb03251832d6dc17410fcb3c60de0220/9d58c/zrange.webp 876w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/cb03251832d6dc17410fcb3c60de0220/3b721/zrange.png 192w,
+/static/cb03251832d6dc17410fcb3c60de0220/66595/zrange.png 384w,
+/static/cb03251832d6dc17410fcb3c60de0220/fe486/zrange.png 768w,
+/static/cb03251832d6dc17410fcb3c60de0220/566b8/zrange.png 876w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/cb03251832d6dc17410fcb3c60de0220/fe486/zrange.png"
+            alt="zrange"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/c260d/zrangebyscore.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 20.3125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAd0lEQVR42qWPSQoFIQxEvYfTQrcqOIsD3v9SaQy0i17+v3ikEipFQnrvkFKCnDPWUgoYY2DOCWstqLVitdZeXwjh6sPxjDHgZBHvPTZ7b1BKAaUUOOcIY+zqFyEE8p2/fhJjhNYaXqG1vgu/QpxzePZ5VUr5d+AD+IV0UMa0wogAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/a59e9/zrangebyscore.webp 192w,
+/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/0ca9f/zrangebyscore.webp 384w,
+/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/dc9b9/zrangebyscore.webp 768w,
+/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/d2f3c/zrangebyscore.webp 1064w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/3b721/zrangebyscore.png 192w,
+/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/66595/zrangebyscore.png 384w,
+/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/fe486/zrangebyscore.png 768w,
+/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/c260d/zrangebyscore.png 1064w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/c3cf66608ddc27ce7cec9bf0dd2b8e10/fe486/zrangebyscore.png"
+            alt="zrangebyscore"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+</br>
 <h4>ZRANK</h4>
 <p>특정 member의 순위를 조회합니다. 순위는 0부터 시작합니다.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ZRANK ranking carol
-# (integer) 1</code></pre></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div></div><style data-emotion="css 1kiehvq">.css-1kiehvq{position:fixed;top:60px;left:calc(50% + 380px);width:220px;max-height:calc(100vh - 100px);overflow-y:auto;}.css-1kiehvq::-webkit-scrollbar{width:3px;}.css-1kiehvq::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:4px;}@media (max-width: 1199px){.css-1kiehvq{display:none;}}</style><aside class="css-1kiehvq e6b6ljm0"><style data-emotion="css 1aio9b8">.css-1aio9b8{padding:24px 0;}</style><div class="css-1aio9b8 etse75s2"><style data-emotion="css afd1zb">.css-afd1zb{font-size:11px;font-weight:700;color:var(--color-text-subtle);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding-left:12px;}</style><div class="css-afd1zb etse75s1">목차</div><style data-emotion="css 15cakdj">.css-15cakdj{display:block;padding:5px 12px 5px 12px;font-size:13px;line-height:1.5;color:var(--color-accent);font-weight:600;border-left:2px solid var(--color-accent);-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.15s;transition:all 0.15s;}.css-15cakdj:hover{color:var(--color-text-primary);background:var(--color-border-light);}</style><a href="#set이란" class="css-15cakdj etse75s0">Set이란?</a><style data-emotion="css 1kkamc5">.css-1kkamc5{display:block;padding:5px 12px 5px 12px;font-size:13px;line-height:1.5;color:var(--color-text-muted);font-weight:400;border-left:2px solid transparent;-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.15s;transition:all 0.15s;}.css-1kkamc5:hover{color:var(--color-text-primary);background:var(--color-border-light);}</style><a href="#java-set-구현체" class="css-1kkamc5 etse75s0">Java Set 구현체</a><style data-emotion="css uqp2rd">.css-uqp2rd{display:block;padding:5px 12px 5px 24px;font-size:13px;line-height:1.5;color:var(--color-text-muted);font-weight:400;border-left:2px solid transparent;-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.15s;transition:all 0.15s;}.css-uqp2rd:hover{color:var(--color-text-primary);background:var(--color-border-light);}</style><a href="#hashset" class="css-uqp2rd etse75s0">HashSet</a><a href="#linkedhashset" class="css-uqp2rd etse75s0">LinkedHashSet</a><a href="#treeset" class="css-uqp2rd etse75s0">TreeSet</a><a href="#redis-zset" class="css-1kkamc5 etse75s0">Redis ZSET</a><a href="#level은-어떻게-정해지는가" class="css-uqp2rd etse75s0">Level은 어떻게 정해지는가</a><a href="#redis-zset-연산작업" class="css-uqp2rd etse75s0">Redis ZSET 연산작업</a><a href="#redis-zset-연산-예시" class="css-uqp2rd etse75s0">Redis ZSET 연산 예시</a></div></aside><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visition My Blog, Have a Good Day 😊<br/>© 2024 Developer Daven, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/java_set/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 636px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ec88f1ffa808d83b790ca9ab98ac887f/44bb2/zrank.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 13.020833333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAApElEQVR42j2OOQqFQBBEPYdLIigqjgvigopoYqCiBhOJ97/G+0yDPyiqq7roaqttW6ZpYhgGyrKk73vWdeW6LvZ9JwxD7vvmeR7e95XMOI6c58m2bZJdloWu69BaYzVNg0Fd11RVRZ7nsvR9nyAIhOM4JkkSlFKioyiSOU1TsiyjKAopNmzN8yxtx3HIURMyXziOg+d5Atd1RX+e0bZt/z2Dz/sBIq5euvDEZ8AAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ec88f1ffa808d83b790ca9ab98ac887f/a59e9/zrank.webp 192w,
+/static/ec88f1ffa808d83b790ca9ab98ac887f/0ca9f/zrank.webp 384w,
+/static/ec88f1ffa808d83b790ca9ab98ac887f/12ea8/zrank.webp 636w"
+              sizes="(max-width: 636px) 100vw, 636px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ec88f1ffa808d83b790ca9ab98ac887f/3b721/zrank.png 192w,
+/static/ec88f1ffa808d83b790ca9ab98ac887f/66595/zrank.png 384w,
+/static/ec88f1ffa808d83b790ca9ab98ac887f/44bb2/zrank.png 636w"
+            sizes="(max-width: 636px) 100vw, 636px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ec88f1ffa808d83b790ca9ab98ac887f/44bb2/zrank.png"
+            alt="zrank"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<br/>
+<h3>참고 자료</h3>
+<ul>
+<li><a href="https://redis.io/docs/latest/develop/data-types/sorted-sets/" target="_blank" rel="nofollow">redis sorted set</a></li>
+</ul></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div></div><style data-emotion="css 1kiehvq">.css-1kiehvq{position:fixed;top:60px;left:calc(50% + 380px);width:220px;max-height:calc(100vh - 100px);overflow-y:auto;}.css-1kiehvq::-webkit-scrollbar{width:3px;}.css-1kiehvq::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:4px;}@media (max-width: 1199px){.css-1kiehvq{display:none;}}</style><aside class="css-1kiehvq e6b6ljm0"><style data-emotion="css 1aio9b8">.css-1aio9b8{padding:24px 0;}</style><div class="css-1aio9b8 etse75s2"><style data-emotion="css afd1zb">.css-afd1zb{font-size:11px;font-weight:700;color:var(--color-text-subtle);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding-left:12px;}</style><div class="css-afd1zb etse75s1">목차</div><style data-emotion="css 15cakdj">.css-15cakdj{display:block;padding:5px 12px 5px 12px;font-size:13px;line-height:1.5;color:var(--color-accent);font-weight:600;border-left:2px solid var(--color-accent);-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.15s;transition:all 0.15s;}.css-15cakdj:hover{color:var(--color-text-primary);background:var(--color-border-light);}</style><a href="#set이란" class="css-15cakdj etse75s0">Set이란?</a><style data-emotion="css 1kkamc5">.css-1kkamc5{display:block;padding:5px 12px 5px 12px;font-size:13px;line-height:1.5;color:var(--color-text-muted);font-weight:400;border-left:2px solid transparent;-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.15s;transition:all 0.15s;}.css-1kkamc5:hover{color:var(--color-text-primary);background:var(--color-border-light);}</style><a href="#java-set-구현체" class="css-1kkamc5 etse75s0">Java Set 구현체</a><style data-emotion="css uqp2rd">.css-uqp2rd{display:block;padding:5px 12px 5px 24px;font-size:13px;line-height:1.5;color:var(--color-text-muted);font-weight:400;border-left:2px solid transparent;-webkit-text-decoration:none;text-decoration:none;-webkit-transition:all 0.15s;transition:all 0.15s;}.css-uqp2rd:hover{color:var(--color-text-primary);background:var(--color-border-light);}</style><a href="#hashset" class="css-uqp2rd etse75s0">HashSet</a><a href="#linkedhashset" class="css-uqp2rd etse75s0">LinkedHashSet</a><a href="#treeset" class="css-uqp2rd etse75s0">TreeSet</a><a href="#redis-zset" class="css-1kkamc5 etse75s0">Redis ZSET</a><a href="#level은-어떻게-정해지는가" class="css-uqp2rd etse75s0">Level은 어떻게 정해지는가</a><a href="#redis-zset-연산작업" class="css-uqp2rd etse75s0">Redis ZSET 연산작업</a><a href="#redis-zset-연산-예시" class="css-uqp2rd etse75s0">Redis ZSET 연산 예시</a><a href="#참고-자료" class="css-uqp2rd etse75s0">참고 자료</a></div></aside><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visition My Blog, Have a Good Day 😊<br/>© 2024 Developer Daven, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/java_set/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
             window.___chunkMapping="{\"app\":[\"/app-6ebb8315b59a2423a646.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-419cc1dccdb06c012fd7.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-5a94c45cad32ce1616ca.js\"],\"component---src-pages-info-tsx\":[\"/component---src-pages-info-tsx-f1d014052408b8a96b24.js\"],\"component---src-pages-portfolio-tsx\":[\"/component---src-pages-portfolio-tsx-da0c59e7b89b230971ea.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-408f5768becac2d0b666.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="fdd3f3cdff28308dc44c";</script><script src="/webpack-runtime-cbd10c6b9fe45232f531.js" async></script><script src="/framework-6a525285796fb83f2864.js" async></script><script src="/app-6ebb8315b59a2423a646.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="49a58de124d43e785dc2";</script><script src="/webpack-runtime-0a1e4668d28c0d921bb5.js" async></script><script src="/framework-6a525285796fb83f2864.js" async></script><script src="/app-6ebb8315b59a2423a646.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>

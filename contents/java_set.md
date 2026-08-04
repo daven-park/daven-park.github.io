@@ -271,54 +271,43 @@ Red-Black Tree처럼 rebalance와 같은 작업이 필요 없이 랜덤한 확�
 
 먼저 아래와 같이 member와 score를 저장해보겠습니다.
 
-```
-ZADD ranking 100 alice 200 bob 150 carol
-```
+![zadd](./java_set/zadd.png)
+
+<br/>
 
 #### ZSCORE
 
 특정 member의 score를 조회합니다.
 
-```
-ZSCORE ranking alice
-# "100"
-```
+![zscore](./java_set/zscore.png)
+
+<br/>
 
 #### ZADD / ZREM
 
 새 member를 추가하거나, 기존 member의 score를 변경할 수 있습니다. ZREM을 사용하면 member를 삭제합니다.
 
-```
-ZADD ranking 250 dave
-ZADD ranking 180 carol
-ZREM ranking dave
-```
+![zrem](./java_set/zrem.png)
+
+<br/>
 
 #### ZRANGE / ZRANGEBYSCORE
 
 ZRANGE는 순위 범위를, ZRANGEBYSCORE는 score 범위를 기준으로 조회합니다.
 
-```
-ZRANGE ranking 0 -1 WITHSCORES
-# 1) "alice"
-# 2) "100"
-# 3) "carol"
-# 4) "180"
-# 5) "bob"
-# 6) "200"
+![zrange](./java_set/zrange.png)
+![zrangebyscore](./java_set/zrangebyscore.png)
 
-ZRANGEBYSCORE ranking 100 180 WITHSCORES
-# 1) "alice"
-# 2) "100"
-# 3) "carol"
-# 4) "180"
-```
+</br>
 
 #### ZRANK
 
 특정 member의 순위를 조회합니다. 순위는 0부터 시작합니다.
 
-```
-ZRANK ranking carol
-# (integer) 1
-```
+![zrank](./java_set/zrank.png)
+
+<br/>
+
+### 참고 자료
+
+- [redis sorted set](https://redis.io/docs/latest/develop/data-types/sorted-sets/)
